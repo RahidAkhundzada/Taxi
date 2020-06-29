@@ -73,7 +73,7 @@ const Home = () => {
             source={require('../Image/search.png')}
             style={{marginLeft: 2}}
           />
-          <TextInput style={{width: '90%'}} />
+          <TextInput style={{width: '90%'}} placeholder="Search destination" />
         </View>
 
         <Animated.View
@@ -84,7 +84,7 @@ const Home = () => {
             },
           ]}>
           <TouchableOpacity
-              disabled={true}
+            disabled={true}
             style={{
               marginTop: 20,
               height: Height * 0.08,
@@ -96,38 +96,61 @@ const Home = () => {
               Add destination leter
             </Text>
           </TouchableOpacity>
+          <TouchableOpacity
+            disabled={true}
+            style={{
+              marginTop: 20,
+              height: Height * 0.08,
+              flexDirection: 'row',
+            }}>
+            <Image source={require('../Image/home.png')} />
+            <Text style={{marginLeft: (Width * 0.1) / 2, fontSize: 16}}>
+              Add Home
+            </Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            disabled={false}
+            style={{
+              marginTop: 20,
+              height: Height * 0.08,
+              flexDirection: 'row',
+            }}>
+            <Image source={require('../Image/work.png')} />
+            <Text style={{marginLeft: (Width * 0.1) / 2, fontSize: 16}}>
+              Add Work
+            </Text>
+          </TouchableOpacity>
         </Animated.View>
-
-
       </View>
     );
   };
 
   return (
     <>
-      <MapView
-        style={{flex: 0.7}}
-        initialRegion={{
-          latitude: 37.78825,
-          longitude: -122.4324,
-          latitudeDelta: 0.0922,
-          longitudeDelta: 0.0421,
-        }}
-      />
+      <View>
+        <MapView
+          style={{flex: 0.7}}
+          initialRegion={{
+            latitude: 39.0341,
+            longitude: 48.6589,
+            latitudeDelta: 0.0922,
+            longitudeDelta: 0.0421,
+          }}
+        />
+      </View>
       <BottomDrawer
         containerHeight={Height * 0.8}
         offset={50}
         downDisplay={Height * 0.57}
         onExpanded={() => {
-            fadeIn();
+          fadeIn();
         }}
         onCollapsed={() => {
-            fadeOut();
+          fadeOut();
         }}
         startUp={false}>
         {renderContent()}
       </BottomDrawer>
-
     </>
   );
 };
