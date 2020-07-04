@@ -14,8 +14,11 @@ import {
   Animated,
   StyleSheet,
   Modal,
+  SafeAreaView,Keyboard
 } from 'react-native';
-import MapView from 'react-native-maps';
+import MapView , { PROVIDER_GOOGLE } from 'react-native-maps';
+import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
+
 import BottomDrawer from 'rn-bottom-drawer';
 import {Width, Height} from '../Const/Consts';
 
@@ -23,12 +26,14 @@ const Home = () => {
   console.log(Height);
 
   const fadeAnim = useRef(new Animated.Value(0)).current;
+  const ViewRef=useRef()
 
   const fadeIn = () => {
     // Will change fadeAnim value to 1 in 5 seconds
     Animated.timing(fadeAnim, {
       toValue: 1,
       duration: 2000,
+      useNativeDriver:true
     }).start();
   };
 
@@ -37,27 +42,29 @@ const Home = () => {
     Animated.timing(fadeAnim, {
       toValue: 0,
       duration: 2000,
+      useNativeDriver:true
     }).start();
   };
-
+  
   const renderContent = () => {
     return (
       <View>
+        <View ref={ViewRef}>
         <TouchableOpacity style={{alignItems: 'center'}}>
           <Image source={require('../Image/minus.png')} />
         </TouchableOpacity>
-
-        <Text style={{marginLeft: (Width * 0.1) / 2}}>Nice to see you!</Text>
+        </View>
+        <Text style={{marginLeft: (Width * 0.1) / 2,fontSize:Width/25}}>Nice to see you!</Text>
         <Text
           style={{
-            fontSize: 25,
+            fontSize: Width /15,
             fontWeight: 'bold',
             marginLeft: (Width * 0.1) / 2,
           }}>
           Where are you going?
         </Text>
-
-        <View
+        
+     <View
           style={{
             alignItems: 'center',
             marginLeft: (Width * 0.1) / 2,
@@ -73,8 +80,14 @@ const Home = () => {
             source={require('../Image/search.png')}
             style={{marginLeft: 2}}
           />
-          <TextInput style={{width: '90%'}} placeholder="Search destination" />
-        </View>
+         
+
+          <TextInput style={{width: '90%'}} 
+          placeholder="Search destination"
+          onFocus={()=>{}}
+          />
+
+        </View> 
 
         <Animated.View
           style={[
@@ -86,13 +99,13 @@ const Home = () => {
           <TouchableOpacity
             disabled={true}
             style={{
-              marginTop: 20,
+              marginTop: 25,
               height: Height * 0.08,
               borderWidth: 0.5,
               borderColor: 'grey',
               justifyContent: 'center',
             }}>
-            <Text style={{marginLeft: (Width * 0.1) / 2, fontSize: 16}}>
+            <Text style={{marginLeft: (Width * 0.1) / 2, fontSize:Width/20}}>
               Add destination leter
             </Text>
           </TouchableOpacity>
@@ -104,7 +117,7 @@ const Home = () => {
               flexDirection: 'row',
             }}>
             <Image source={require('../Image/home.png')} />
-            <Text style={{marginLeft: (Width * 0.1) / 2, fontSize: 16}}>
+            <Text style={{marginLeft: (Width * 0.1) / 2,  fontSize:Width/20}}>
               Add Home
             </Text>
           </TouchableOpacity>
@@ -116,7 +129,7 @@ const Home = () => {
               flexDirection: 'row',
             }}>
             <Image source={require('../Image/work.png')} />
-            <Text style={{marginLeft: (Width * 0.1) / 2, fontSize: 16}}>
+            <Text style={{marginLeft: (Width * 0.1) / 2,  fontSize:Width/20}}>
               Add Work
             </Text>
           </TouchableOpacity>
@@ -125,9 +138,12 @@ const Home = () => {
     );
   };
 
+  const COORDINATE1 = [35.67737855391474, 139.76531982421875];
+const COORDINATE2 = [35.67514743608467, 139.76806640625];
+
   return (
-    <>
-      <View>
+  
+      <>
         <MapView
           style={{flex: 0.7}}
           initialRegion={{
@@ -135,12 +151,14 @@ const Home = () => {
             longitude: 48.6589,
             latitudeDelta: 0.0922,
             longitudeDelta: 0.0421,
-          }}
-        />
-      </View>
+          }}/>
+            
+         
+      
       <BottomDrawer
         containerHeight={Height * 0.8}
         offset={50}
+        roundedEdges={true}
         downDisplay={Height * 0.57}
         onExpanded={() => {
           fadeIn();
@@ -151,7 +169,8 @@ const Home = () => {
         startUp={false}>
         {renderContent()}
       </BottomDrawer>
-    </>
+      </>
+    
   );
 };
 const styles = StyleSheet.create({
@@ -163,7 +182,7 @@ const styles = StyleSheet.create({
   fadingContainer: {
     paddingVertical: 8,
     paddingHorizontal: 16,
-    backgroundColor: 'powderblue',
+    backgroundColor: 'white',
   },
   fadingText: {
     fontSize: 28,
