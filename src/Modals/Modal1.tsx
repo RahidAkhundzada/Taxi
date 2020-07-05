@@ -10,7 +10,8 @@ import {
   Platform,
   KeyboardAvoidingView,
   FlatList,
-    Keyboard
+    Keyboard,
+    SafeAreaView
 } from 'react-native';
 import {observer} from 'mobx-react-lite';
 import 'mobx-react-lite/batchingForReactNative';
@@ -62,9 +63,9 @@ const Modal1 = observer(() => {
   };
 
   return (
-    <View>
+    <SafeAreaView>
       <Modal animationType="fade" visible={NewModal.Modal}>
-        <View style={{flexDirection: 'row', margin: 5}}>
+        <SafeAreaView style={{flexDirection: 'row', margin: 5}}>
           <View style={{width: Width / 15}}>
             <TouchableOpacity onPress={() => NewModal.ModalOpen()}>
               <Image
@@ -82,7 +83,7 @@ const Modal1 = observer(() => {
             }}>
             <Text style={{fontSize: 20}}>Select country code</Text>
           </View>
-        </View>
+        </SafeAreaView>
 
         <KeyboardAvoidingView
           behavior={Platform.OS == 'ios' ? 'padding' : 'height'}>
@@ -121,7 +122,7 @@ const Modal1 = observer(() => {
           keyExtractor={(item, index) => index.toString()}
         />
       </Modal>
-    </View>
+    </SafeAreaView>
   );
 });
 export default Modal1;

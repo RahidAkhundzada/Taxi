@@ -15,6 +15,7 @@ import {
 import MapView , { PROVIDER_GOOGLE } from 'react-native-maps';
 import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
 import Geolocation from '@react-native-community/geolocation';
+import DrawerLayout from 'react-native-gesture-handler/DrawerLayout';
 
 import BottomDrawer from "rn-bottom-drawer";
 import {Width, Height} from '../Const/Consts';

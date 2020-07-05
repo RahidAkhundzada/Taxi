@@ -8,6 +8,7 @@ import {
   Image,
   Platform,
   KeyboardAvoidingView,
+  SafeAreaView
 } from 'react-native';
 import {observer} from 'mobx-react-lite';
 import 'mobx-react-lite/batchingForReactNative';
@@ -27,7 +28,7 @@ const Registration = observer(() => {
 
 
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       <View style={styles.Header}>
         <Text style={styles.Text1h}>Enter your number</Text>
         <Text style={styles.Text2h}>
@@ -84,7 +85,7 @@ const Registration = observer(() => {
       </KeyboardAvoidingView>
 
       <Modals />
-    </View>
+    </SafeAreaView>
   );
 });
 export default Registration;
