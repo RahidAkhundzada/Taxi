@@ -1,9 +1,3 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- * @flow
- */
-
 import React, {useRef,useState} from 'react';
 import {
   Image,
@@ -14,12 +8,15 @@ import {
   Animated,
   StyleSheet,
   Modal,
-  SafeAreaView,Keyboard,Platform
+  SafeAreaView,
+  Keyboard,
+  Platform
 } from 'react-native';
 import MapView , { PROVIDER_GOOGLE } from 'react-native-maps';
 import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
+import Geolocation from '@react-native-community/geolocation';
 
-import BottomDrawer from 'rn-bottom-drawer';
+import BottomDrawer from "rn-bottom-drawer";
 import {Width, Height} from '../Const/Consts';
 
 const Home = () => {
@@ -29,7 +26,7 @@ const Home = () => {
   const [latitude, setlatitude] = useState(0)
   const [longitude, setlongitude] = useState(0)
 
-
+  
 
   const fadeIn = () => {
     // Will change fadeAnim value to 1 in 5 seconds
@@ -148,6 +145,7 @@ const COORDINATE2 = [35.67514743608467, 139.76806640625];
   
 
       <SafeAreaView style={{flex:1}}>
+        
         <MapView
         provider="google"
           style={{height: Height*0.7}}
