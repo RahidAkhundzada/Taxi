@@ -4,7 +4,7 @@
  * @flow
  */
 
-import React, {useRef} from 'react';
+import React, {useRef,useState} from 'react';
 import {
   Image,
   Text,
@@ -14,7 +14,7 @@ import {
   Animated,
   StyleSheet,
   Modal,
-  SafeAreaView,Keyboard
+  SafeAreaView,Keyboard,Platform
 } from 'react-native';
 import MapView , { PROVIDER_GOOGLE } from 'react-native-maps';
 import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
@@ -23,10 +23,13 @@ import BottomDrawer from 'rn-bottom-drawer';
 import {Width, Height} from '../Const/Consts';
 
 const Home = () => {
-  console.log(Height);
-
   const fadeAnim = useRef(new Animated.Value(0)).current;
   const ViewRef=useRef()
+
+  const [latitude, setlatitude] = useState(0)
+  const [longitude, setlongitude] = useState(0)
+
+
 
   const fadeIn = () => {
     // Will change fadeAnim value to 1 in 5 seconds
@@ -143,9 +146,11 @@ const COORDINATE2 = [35.67514743608467, 139.76806640625];
 
   return (
   
-      <>
+
+      <SafeAreaView style={{flex:1}}>
         <MapView
-          style={{flex: 0.7}}
+        provider="google"
+          style={{height: Height*0.7}}
           initialRegion={{
             latitude: 39.0341,
             longitude: 48.6589,
@@ -155,11 +160,12 @@ const COORDINATE2 = [35.67514743608467, 139.76806640625];
             
          
       
-      <BottomDrawer
+     <BottomDrawer
+        
         containerHeight={Height * 0.8}
-        offset={50}
+        offset={0}
         roundedEdges={true}
-        downDisplay={Height * 0.57}
+        downDisplay={Height * 0.55}
         onExpanded={() => {
           fadeIn();
         }}
@@ -168,8 +174,9 @@ const COORDINATE2 = [35.67514743608467, 139.76806640625];
         }}
         startUp={false}>
         {renderContent()}
-      </BottomDrawer>
-      </>
+      </BottomDrawer> 
+      </SafeAreaView>
+      
     
   );
 };

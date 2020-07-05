@@ -3,6 +3,7 @@
 #import <React/RCTBridge.h>
 #import <React/RCTBundleURLProvider.h>
 #import <React/RCTRootView.h>
+#import <GoogleMaps/GoogleMaps.h>
 
 #if DEBUG
 #import <FlipperKit/FlipperClient.h>
@@ -22,11 +23,12 @@ static void InitializeFlipper(UIApplication *application) {
   [client start];
 }
 #endif
-
+@import GoogleMaps;
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+  [GMSServices provideAPIKey:@"AIzaSyD0v7z6DWRm9YCcXdVjcCz1qD8dNfFXd7Q"];
 #if DEBUG
   InitializeFlipper(application);
 #endif
