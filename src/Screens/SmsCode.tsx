@@ -8,7 +8,7 @@ import {
   Image,
   Platform,
   KeyboardAvoidingView,
-  SafeAreaView,Dimensions
+  SafeAreaView
 } from 'react-native';
 import firebase from 'firebase';
 import {observer} from 'mobx-react-lite';
@@ -32,40 +32,8 @@ if (!firebase.apps.length) {
   firebase.initializeApp(firebaseConfig);
 }
 
-const Registration = observer(({navigation} : any) => {
+const SmsCode = observer(() => {
   const NewModal = useContext(CountryStore);
-  const [Number, setNumber] = useState(NewModal.Country_Detail.callingCodes)
-  const [error, seterror] = useState(false)
-  const [message, setmessage] = useState('')
-  const [verifying, setverifying] = useState(false)
-
-
-  //var appVerifier :any= firebase.auth.RecaptchaVerifier;
-  let phoneNumber=NewModal.Country_Detail.callingCodes+Number
-
-  // const appVerifier = new firebase.auth.RecaptchaVerifier(
-  //   "recaptcha-container"
-  // );
-  // if (phoneNumber < 10) {
-   
-  //   seterror(true)
-  // } else {
-  //   setmessage("Sending code ...")
-
-  //   firebase
-  //     .auth()
-  //     .signInWithPhoneNumber(phoneNumber, appVerifier)
-  //     .then(confirmResult =>
-  //       setverifying(true)
-
-  //     )
-  //     .catch((error:any) =>
-      
-  //       setmessage(`Sign In With Phone Number Error: ${error.message}`)
-  //     );
-  // }
-  
-  console.log(phoneNumber)
 
   const Modals = () => {
     return <Modal1 />;
@@ -78,36 +46,19 @@ const Registration = observer(({navigation} : any) => {
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.Header}>
-        <Text style={styles.Text1h}>Enter your number</Text>
-        <Text style={styles.Text2h}>
+        <Text style={styles.Text1h}>Enter SMS Code</Text>
+        {/* <Text style={styles.Text2h}>
           We will send a code to verify your mobile number
-        </Text>
+        </Text> */}
       </View>
 
       <View style={styles.TextInput}>
-        <TouchableOpacity
-          style={styles.Btn}
-          onPress={() => NewModal.ModalOpen()}>
-
-          <Image source={flag} />
-
-          <Image
-            source={require('../Image/down.png')}
-            style={{width: 10, height: 10, margin: '1%'}}
-          />
-
-          <Text>{NewModal.Country_Detail.alpha3Code}</Text>
-          <Text style={{marginLeft: 5, color: 'red'}}>
-            +{NewModal.Country_Detail.callingCodes}
-          </Text>
-        </TouchableOpacity>
+        
 
         <TextInput
           style={styles.NumberText}
-          placeholder="Phone Number"
+          placeholder="Sms Code"
           keyboardType="phone-pad"
-          onChangeText={text=>setNumber(text)}
-          value={Number}
         />
       </View>
 
@@ -115,7 +66,7 @@ const Registration = observer(({navigation} : any) => {
         behavior={Platform.OS == 'ios' ? 'padding' : 'height'}>
         <View style={{justifyContent: 'center'}}>
           <TouchableOpacity style={{marginLeft: '5%', marginBottom: '2%'}}>
-            <Text style={{color: 'tomato'}}>Login with Facebook</Text>
+           
           </TouchableOpacity>
 
           <View style={{alignItems: 'center'}}>
@@ -127,9 +78,7 @@ const Registration = observer(({navigation} : any) => {
                 borderRadius: 30,
                 alignItems: 'center',
                 justifyContent: 'center',
-              }}
-              onPress={()=>navigation.navigate("SmsCode")}
-              >
+              }}>
               <Text>Contunue</Text>
             </TouchableOpacity>
           </View>
@@ -140,7 +89,7 @@ const Registration = observer(({navigation} : any) => {
     </SafeAreaView>
   );
 });
-export default Registration;
+export default SmsCode;
 
 const styles = StyleSheet.create({
   container: {

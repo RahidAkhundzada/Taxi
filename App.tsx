@@ -5,6 +5,7 @@ import {createStackNavigator} from '@react-navigation/stack';
 import Home from './src/Screens/Home';
 import Opening from './src/Screens/Opening';
 import Registration from './src/Screens/Registration';
+import SmsCode from './src/Screens/SmsCode';
 import {observer} from 'mobx-react-lite';
 import 'mobx-react-lite/batchingForReactNative';
 
@@ -31,6 +32,11 @@ const StackApp2 = () => {
       <Stack3.Screen
         name="Registration"
         component={Registration}
+        options={{headerShown: false}}
+      />
+       <Stack3.Screen
+        name="SmsCode"
+        component={SmsCode}
         options={{headerShown: false}}
       />
     </Stack3.Navigator>
