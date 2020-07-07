@@ -39,32 +39,7 @@ const Registration = observer(({navigation} : any) => {
   const [message, setmessage] = useState('')
   const [verifying, setverifying] = useState(false)
 
-
-  //var appVerifier :any= firebase.auth.RecaptchaVerifier;
   let phoneNumber=NewModal.Country_Detail.callingCodes+Number
-
-  // const appVerifier = new firebase.auth.RecaptchaVerifier(
-  //   "recaptcha-container"
-  // );
-  // if (phoneNumber < 10) {
-   
-  //   seterror(true)
-  // } else {
-  //   setmessage("Sending code ...")
-
-  //   firebase
-  //     .auth()
-  //     .signInWithPhoneNumber(phoneNumber, appVerifier)
-  //     .then(confirmResult =>
-  //       setverifying(true)
-
-  //     )
-  //     .catch((error:any) =>
-      
-  //       setmessage(`Sign In With Phone Number Error: ${error.message}`)
-  //     );
-  // }
-  
   console.log(phoneNumber)
 
   const Modals = () => {

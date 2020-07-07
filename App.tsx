@@ -30,8 +30,8 @@ const StackApp2 = () => {
   return (
     <Stack3.Navigator>
       <Stack3.Screen
-        name="Registration"
-        component={Registration}
+        name="Home"
+        component={Home}
         options={{headerShown: false}}
       />
        <Stack3.Screen
